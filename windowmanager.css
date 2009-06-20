@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+html {
+	padding-bottom: 30px;
+}
+
+.v-windowmanager {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	
+	border-top: 1px solid black;
+	background-color: white;
+	height: 30px;
+	padding: 3px;
+	z-index: 99;
+}
+
+.v-windowmanager-windowbox, .v-windowmanager-windowbox-minimized {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid gray;
+	float: left;
+	cursor: pointer;
+}
+
+.v-windowmanager-windowbox-minimized {
+	background-color: gray;
+}
