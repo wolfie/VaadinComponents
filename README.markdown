@@ -5,7 +5,7 @@ exercise for me, personally, but I've chosen them specifically either
 because people have been asking for them, or that I've found them to be
 interesting as training projects.
 
-[VC] http://vaadin.com
+[VC]: http://vaadin.com
 
 # List Of Components
 
