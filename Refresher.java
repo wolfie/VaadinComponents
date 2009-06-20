@@ -14,9 +14,9 @@
  * the License.
  */
 
-package net.lightframe.components;
+package org.lightframe.components;
 
-import net.lightframe.components.client.ui.VRefresher;
+import org.lightframe.components.client.ui.VRefresher;
 
 import com.vaadin.terminal.PaintException;
 import com.vaadin.terminal.PaintTarget;

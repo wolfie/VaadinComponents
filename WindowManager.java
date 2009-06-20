@@ -14,7 +14,7 @@
  * the License.
  */
 
-package net.lightframe.components;
+package org.lightframe.components;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import net.lightframe.components.client.ui.VWindowManager;
+import org.lightframe.components.client.ui.VWindowManager;
+
 
 import com.vaadin.Application;
 import com.vaadin.terminal.PaintException;

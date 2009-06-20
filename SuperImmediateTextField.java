@@ -14,14 +14,15 @@
  * the License.
  */
 
-package net.lightframe.components;
+package org.lightframe.components;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-import net.lightframe.components.client.ui.VSuperImmediateTextField;
+import org.lightframe.components.client.ui.VSuperImmediateTextField;
+
 
 import com.vaadin.data.Property;
 import com.vaadin.ui.TextField;

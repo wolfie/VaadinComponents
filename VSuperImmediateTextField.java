@@ -14,7 +14,7 @@
  * the License.
  */
 
-package net.lightframe.components.client.ui;
+package org.lightframe.components.client.ui;
 
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;

@@ -1,6 +1,6 @@
-package net.lightframe.components;
+package org.lightframe.components;
 
-import net.lightframe.components.SuperImmediateTextField.KeyPressEvent;
+import org.lightframe.components.SuperImmediateTextField.KeyPressEvent;
 
 import com.vaadin.Application;
 import com.vaadin.ui.Button;
