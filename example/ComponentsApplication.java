@@ -1,7 +1,5 @@
 package org.lightframe.components;
 
-import org.lightframe.components.SuperImmediateTextField.KeyPressEvent;
-
 import com.vaadin.Application;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -167,7 +165,7 @@ public class ComponentsApplication extends Application {
         textField.addListener(new SuperImmediateTextField.KeyPressListener() {
             private static final long serialVersionUID = -3549051979588281670L;
 
-            public void keyPressed(KeyPressEvent event) {
+            public void keyPressed(SuperImmediateTextField.KeyPressEvent event) {
                 superImmediateLabel.setValue(textField.getValue());
             }
         });
