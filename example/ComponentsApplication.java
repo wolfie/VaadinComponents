@@ -114,7 +114,6 @@ public class ComponentsApplication extends Application {
         final WindowManager manager = new WindowManager();
         manager.setData(1);
 
-        // getMainWindow().addComponent(manager);
         panel.addComponent(manager);
 
         panel.addComponent(new Label("<div style='margin-bottom:10px;'>"
