@@ -12,6 +12,7 @@ interesting as training projects.
 * Refresher
 * SuperImmediateTextField
 * WindowManager
+* SwappablePasswordField
 
 # Usage
 
@@ -23,21 +24,21 @@ nightly, 20090522-c7975][V6NJAR] and [GWT][GWT] 1.6.4.
 [V6NJAR]: http://vaadin.com/download/nightly/6.0/vaadin-6.0.nightly-20090522-c7975.jar
 [GWT]: http://code.google.com/webtoolkit/versions.html
 
-The source files starting with a capital 'V' and another capital letter
-are the client side GWT widgets. Those having only one capital letter in
-the beginning are the server side Vaadin Components. Any
-component-specific CSS are found in respective `.css` files. You probably
-want to use them in your application's theme.
+Each component has its own directory. They are most often composed of the
+server side component (ExampleFileComponent.java), the client side
+(VExampleFileComponent.java) and sometimes theme-related CSS
+(examplefilecomponent.css), which you need to include to your application's
+theme.
 
-All this can be found in the [Book of Vaadin][BoV], chapters [7.3][BoV73],
-[9.4][BoV94] and [9.7][BoV97].
+Actually taking the components in use can be found in the [Book of
+Vaadin][BoV], chapters [7.3][BoV73], [9.4][BoV94] and [9.7][BoV97].
 
 [BoV]:   http://vaadin.com/book/-/page/preface.html
 [BoV73]: http://vaadin.com/book/-/page/themes.creating.html
 [BoV94]: http://vaadin.com/book/-/page/gwt.widgetset.html
 [BoV97]: http://vaadin.com/book/-/page/gwt.development.html
 
-An example Application is found in the `example` subdirectory.
+An example Application is found in the root directory.
 
 # Contact Me?
 
