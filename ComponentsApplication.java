@@ -62,6 +62,24 @@ public class ComponentsApplication extends Application {
         mainWindow.addComponent(superImmediateExample());
         mainWindow.addComponent(windowManagerExample());
         mainWindow.addComponent(refresherExample());
+        mainWindow.addComponent(swappablePasswordFieldExample());
+    }
+
+    private Component swappablePasswordFieldExample() {
+        final Panel panel = new Panel("SwappablePasswordField example");
+        final SwappablePasswordField field = new SwappablePasswordField();
+        final String html = "<div style='margin-bottom:10px'>"
+                + "This CustomComponent allows you to swap "
+                + "between the 'text' and 'password' modes of a text input field.<br/>"
+                + "It consists of a TextBox and a CheckBox with a neat API to control the pair of them.<br/>"
+                + "I did this mainly inspired by "
+                + "<a href='http://www.useit.com/alertbox/passwords.html' target='_blank'>a call</a>"
+                + " against hidden passwords.</div>";
+
+        panel.addComponent(new Label(html, Label.CONTENT_XHTML));
+        panel.addComponent(field);
+
+        return panel;
     }
 
     private Component refresherExample() {
