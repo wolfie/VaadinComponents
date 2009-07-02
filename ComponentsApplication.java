@@ -1,5 +1,7 @@
 package org.lightframe.components;
 
+import java.io.Serializable;
+
 import com.vaadin.Application;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -13,7 +15,8 @@ public class ComponentsApplication extends Application {
     private static final long serialVersionUID = -1134769947702907890L;
     private static final long SLEEP_TIME_IN_MILLIS = 500; // half a second
 
-    private class CounterThread extends Thread {
+    private class CounterThread extends Thread implements Serializable {
+        private static final long serialVersionUID = 6969871601928939400L;
         private final Label renderLabel;
         private boolean running = false;
 
@@ -170,22 +173,54 @@ public class ComponentsApplication extends Application {
     }
 
     private Component superImmediateExample() {
-        final Panel panel = new Panel("SuperImmediateTextField example");
-        final SuperImmediateTextField textField = new SuperImmediateTextField();
-        final Label superImmediateLabel = new Label(
-                "I'm a Label, mirroring the field.");
+        final Panel panel = new Panel("SuperImmediateTextField examples");
 
-        panel.addComponent(textField);
-        panel.addComponent(superImmediateLabel);
+        final HorizontalLayout semiSuperImmediate = new HorizontalLayout();
+        final SuperImmediateTextField semiSuperImmediateTextField = new SuperImmediateTextField();
+        final Label semiSuperImmediateLabel = new Label(
+                "I'm a Label, mirroring the field with a second's delay.");
 
-        textField.setInputPrompt("type something");
-        textField.addListener(new SuperImmediateTextField.KeyPressListener() {
-            private static final long serialVersionUID = -3549051979588281670L;
+        semiSuperImmediate.addComponent(semiSuperImmediateTextField);
+        semiSuperImmediate.addComponent(semiSuperImmediateLabel);
 
-            public void keyPressed(SuperImmediateTextField.KeyPressEvent event) {
-                superImmediateLabel.setValue(textField.getValue());
-            }
-        });
+        semiSuperImmediateTextField.setDelay(1000);
+        semiSuperImmediateTextField.setInputPrompt("type something");
+        semiSuperImmediateTextField
+                .addListener(new SuperImmediateTextField.KeyPressListener() {
+                    private static final long serialVersionUID = -3549051979588281670L;
+
+                    public void keyPressed(
+                            SuperImmediateTextField.KeyPressEvent event) {
+                        semiSuperImmediateLabel
+                                .setValue(semiSuperImmediateTextField
+                                        .getValue());
+                    }
+                });
+
+        final HorizontalLayout verySuperImmediate = new HorizontalLayout();
+        final SuperImmediateTextField verySuperImmediateTextField = new SuperImmediateTextField();
+        final Label verySuperImmediateLabel = new Label(
+                "I'm a Label, mirroring the field immediately.");
+
+        verySuperImmediate.addComponent(verySuperImmediateTextField);
+        verySuperImmediate.addComponent(verySuperImmediateLabel);
+
+        verySuperImmediateTextField.setDelay(0);
+        verySuperImmediateTextField.setInputPrompt("type something");
+        verySuperImmediateTextField
+                .addListener(new SuperImmediateTextField.KeyPressListener() {
+                    private static final long serialVersionUID = 3729899805732151471L;
+
+                    public void keyPressed(
+                            SuperImmediateTextField.KeyPressEvent event) {
+                        verySuperImmediateLabel
+                                .setValue(verySuperImmediateTextField
+                                        .getValue());
+                    }
+                });
+
+        panel.addComponent(semiSuperImmediate);
+        panel.addComponent(verySuperImmediate);
 
         return panel;
     }
