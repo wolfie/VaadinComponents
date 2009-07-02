@@ -20,6 +20,9 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Timer;
+import com.vaadin.terminal.gwt.client.ApplicationConnection;
+import com.vaadin.terminal.gwt.client.UIDL;
 import com.vaadin.terminal.gwt.client.ui.VTextField;
 
 public class VSuperImmediateTextField extends VTextField implements
@@ -32,6 +35,11 @@ public class VSuperImmediateTextField extends VTextField implements
     public static final String CLASSNAME = "v-" + TAGNAME;
 
     public static final String PROPERTY_KEYPRESSED = "keypressed";
+    public static final String ATTRIBUTE_DELAY = "delay";
+    public static final int DEFAULT_DELAY = 300;
+
+    private int delayMillis = DEFAULT_DELAY;
+    private Timer timer = null;
 
     public VSuperImmediateTextField() {
         this(DOM.createInputText());
@@ -45,6 +53,44 @@ public class VSuperImmediateTextField extends VTextField implements
     }
 
     public void onKeyUp(KeyUpEvent event) {
+        if (delayMillis == 0) {
+            sendSuperImmediateEvent();
+        }
+
+        else if (delayMillis > 0) {
+            if (timer == null) {
+                timer = newTimer();
+            } else {
+                timer.cancel();
+            }
+
+            timer.schedule(delayMillis);
+        }
+    }
+
+    @Override
+    public void updateFromUIDL(UIDL uidl, ApplicationConnection client) {
+        super.updateFromUIDL(uidl, client);
+
+        if (client.updateComponent(this, uidl, true)) {
+            return;
+        }
+
+        if (uidl.hasAttribute(ATTRIBUTE_DELAY)) {
+            delayMillis = uidl.getIntAttribute(ATTRIBUTE_DELAY);
+        }
+    }
+
+    private Timer newTimer() {
+        return new Timer() {
+            public void run() {
+                sendSuperImmediateEvent();
+                timer = null;
+            }
+        };
+    }
+
+    public void sendSuperImmediateEvent() {
         client.updateVariable(client.getPid(this), PROPERTY_KEYPRESSED, true,
                 false);
         client.updateVariable(client.getPid(this), "text", getText(), false);

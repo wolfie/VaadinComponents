@@ -23,8 +23,9 @@ import java.util.Map;
 
 import org.lightframe.components.client.ui.VSuperImmediateTextField;
 
-
 import com.vaadin.data.Property;
+import com.vaadin.terminal.PaintException;
+import com.vaadin.terminal.PaintTarget;
 import com.vaadin.ui.TextField;
 
 /**
@@ -80,6 +81,8 @@ public class SuperImmediateTextField extends TextField {
     };
 
     private final Collection<KeyPressListener> listeners = new ArrayList<KeyPressListener>();
+
+    private int delayMillis = VSuperImmediateTextField.DEFAULT_DELAY;
 
     /**
      * @see TextField#TextField()
@@ -145,5 +148,37 @@ public class SuperImmediateTextField extends TextField {
 
     public void removeListener(KeyPressListener listener) {
         listeners.remove(listener);
+    }
+
+    /**
+     * Set the delay to wait until the super immediate event is sent from when
+     * the user starts typing.
+     * 
+     * @param delayInMillis
+     *            How many milliseconds to wait. If negative, no event will be
+     *            sent.
+     */
+    public void setDelay(final int delayInMillis) {
+        delayMillis = delayInMillis;
+        requestRepaint();
+    }
+
+    /**
+     * Get the time waited between the user's start of typing and when the super
+     * immediate event.
+     * 
+     * @return The delayed time in milliseconds. A negative result indicates
+     *         that no events will be sent.
+     */
+    public int getDelay() {
+        return delayMillis;
+    }
+
+    @Override
+    public void paintContent(PaintTarget target) throws PaintException {
+        super.paintContent(target);
+
+        target.addAttribute(VSuperImmediateTextField.ATTRIBUTE_DELAY,
+                delayMillis);
     }
 }
